@@ -1,5 +1,26 @@
 # GlawayLibrary
 国睿信维android基本依赖
+>
+>
+>使用说明
+
+```
+项目gradle
+allprojects {
+    repositories {
+        maven {
+            url "https://jitpack.io"
+        }
+        google()
+        jcenter()
+        
+    }
+}
+app的gradle添加
+implementation 'com.github.LuoyuOvO:GlawayLibrary:v1.0.1'
+
+```
+
 
 >
 >
