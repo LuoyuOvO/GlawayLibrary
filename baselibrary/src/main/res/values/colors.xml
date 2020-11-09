@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="login_text_color">#8fa7cc</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="shape_edit_bottomline">#CBCBCB</color>
+    <color name="shape_edit_bg">#ffffff</color>
+    <color name="shape_back_color">#ffffff</color>
+    <color name="title_text_bg">#ffffff</color>
+    <color name="title_text_color">#ffffff</color>
+    <color name="shape_kuang4dp">#ffffff</color>
+    <color name="shape_sp_box">#ffffff</color>
+    <color name="shape_sp_kuang">#CCCCCC</color>
+    <color name="shape_em_edit">#F0F0F0</color>
+</resources>
