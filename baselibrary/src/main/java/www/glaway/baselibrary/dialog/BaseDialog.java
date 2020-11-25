@@ -1,71 +1,95 @@
 package www.glaway.baselibrary.dialog;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Display;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.fragment.app.DialogFragment;
-
 import www.glaway.baselibrary.R;
 
+public class BaseDialog extends Dialog implements View.OnClickListener {
+    //在构造方法里提前加载了样式
+    private Context context;//上下文
+//    private int layoutResID;//布局文件id
+//    private int[] listenedItem;//监听的控件id
 
-public abstract class BaseDialog extends DialogFragment {
+    public BaseDialog(Context context) {
+        super(context, R.style.BaseDialogStyle);//加载dialog的样式
+        this.context = context;
+//        this.layoutResID = layoutResID;
+//        this.listenedItem = listenedItem;
+    }
+    public BaseDialog(Context context, int layoutResID, int[] listenedItem) {
+        super(context, R.style.BaseDialogStyle);//加载dialog的样式
+        this.context = context;
+//        this.layoutResID = layoutResID;
+//        this.listenedItem = listenedItem;
+    }
 
-
-    private Window window;
-    protected DialogCallback callback;
-
-    /**
-     * 初始化界面
-     */
-    public abstract void initView();
-
-    /**
-     * 初始化界面数据
-     */
-    public abstract void initData();
-
-    /**
-     * 输入校验
-     */
-    public abstract boolean checkInput();
-
-    /**
-     * 弹出样式
-     */
     @Override
-    public void onStart() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //提前设置Dialog的一些样式
+//        Window dialogWindow = getWindow();
+//        dialogWindow.setGravity(Gravity.CENTER);//设置dialog显示居中
+        //dialogWindow.setWindowAnimations();设置动画效果
+//        setContentView(layoutResID);
+
+
+//        WindowManager windowManager = ((Activity) context).getWindowManager();
+//        Display display = windowManager.getDefaultDisplay();
+//        WindowManager.LayoutParams lp = getWindow().getAttributes();
+//        lp.width = display.getWidth() * 4 / 5;// 设置dialog宽度为屏幕的4/5
+//        lp.height = display.getHeight() / 2;
+//        getWindow().setAttributes(lp);
+//        setCanceledOnTouchOutside(true);//点击外部Dialog消失
+//        //遍历控件id添加点击注册
+//        for (int id : listenedItem) {
+//            findViewById(id).setOnClickListener(this);
+//        }
+        initPage();
+    }
+
+    public void initPage(){
+        //提前设置Dialog的一些样式
+        Window dialogWindow = getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);//设置dialog显示居中
+
+        WindowManager windowManager = ((Activity) context).getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.width = display.getWidth() * 2 / 5;// 设置dialog宽度为屏幕的4/5
+        lp.height = display.getHeight() / 2;
+        getWindow().setAttributes(lp);
+        setCanceledOnTouchOutside(true);//点击外部Dialog消失
+    }
+
+    @Override
+    protected void onStart() {
         super.onStart();
-        // 下面这些设置必须在此方法(onStart())中才有效
+        initPage();
+    }
 
-        window = getDialog().getWindow();
-        // 如果不设置这句代码, 那么弹框就会与四边都有一定的距离
-        window.setBackgroundDrawableResource(android.R.color.transparent);
-        // 设置动画
-        window.setWindowAnimations(R.style.topDialog);
+    private OnCenterItemClickListener listener;
 
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.gravity = Gravity.RIGHT;
-        // 如果不设置宽度,那么即使你在布局中设置宽度为 match_parent 也不会起作用
-        params.width = (int) (getResources().getDisplayMetrics().widthPixels * (0.8f));
-        params.height = (int) (getResources().getDisplayMetrics().heightPixels * (0.85f));
-        window.setAttributes(params);
+    public interface OnCenterItemClickListener {
+        void OnCenterItemClick(BaseDialog dialog, View view);
+    }
+
+    //很明显我们要在这里面写个接口，然后添加一个方法
+    public void setOnCenterItemClickListener(OnCenterItemClickListener listener) {
+        this.listener = listener;
     }
 
 
-    /**
-     * 设置回调
-     *
-     * @param callback
-     */
-    public void setCallback(DialogCallback callback) {
-        this.callback = callback;
-    }
-
-    /**
-     * 内部接口
-     */
-    public interface DialogCallback {
-        void call(Object call);
+    @Override
+    public void onClick(View v) {
+        dismiss();//注意：我在这里加了这句话，表示只要按任何一个控件的id,弹窗都会消失，不管是确定还是取消。
+        listener.OnCenterItemClick(this, v);
     }
 }

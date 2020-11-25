@@ -18,15 +18,21 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * 文件解压，压缩
+ */
 public class ZipUtil {
 
-    private static final String EXPORTFILEPATH = Environment.getExternalStorageDirectory() + "/AMS/EXPORT/CACHE/";
-    private static final String zippath = Environment.getExternalStorageDirectory() + "/AMS/IMPORT/CACHE";
-    private static final String EXPORTPATH = Environment.getExternalStorageDirectory().getPath() + "/AMS/EXPORT/data.zip";
+    //压缩缓存路径
+    public static final String EXPORTFILEPATH = Environment.getExternalStorageDirectory() + "/AMS/EXPORT/CACHE/";
+    //解压缓存路径
+    public static final String zippath = Environment.getExternalStorageDirectory() + "/AMS/IMPORT/CACHE";
+    //导出文件路径和名称
+    public static final String EXPORTPATH = Environment.getExternalStorageDirectory().getPath() + "/AMS/EXPORT/data.zip";
 
 
     /**
-     * 解压文件
+     * 解压文件，需要选择一个zip文件
      *
      * @param file
      * @throws Exception
@@ -59,6 +65,11 @@ public class ZipUtil {
         return data;
     }
 
+    /**
+     * 写入文件，文件名称和数据
+     * @param filename
+     * @param data
+     */
     public static void writeFile(String filename,String data){
         String filePath = EXPORTFILEPATH+filename+".json";
         FileUtil.fileDelete(filePath);
@@ -67,6 +78,10 @@ public class ZipUtil {
     }
 
 
+    /**
+     * 压缩文件，根据上面的路径压缩
+     * @throws Exception
+     */
     public static void zip() throws Exception {
         //提供了一个数据项压缩成一个ZIP归档输出流
         ZipOutputStream out = null;

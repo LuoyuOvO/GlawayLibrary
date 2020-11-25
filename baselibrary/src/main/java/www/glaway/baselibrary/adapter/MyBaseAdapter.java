@@ -19,6 +19,9 @@ public abstract class MyBaseAdapter extends BaseAdapter {
     protected LayoutInflater inflater;
     protected AdapterCallback adapterCallback;
 
+    /**
+     *  回调方式，查看，删除，添加，隐藏，显示
+     */
     public enum CallType {
         Info, Delete, Add, Hide, Show
     }

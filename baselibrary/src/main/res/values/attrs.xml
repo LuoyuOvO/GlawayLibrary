@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--最好是自定义TextView的类名，查看起来一目了然-->
+    <declare-styleable name="MyTextView">
+        <attr name="text" format="string" />
+        <attr name="textColor" format="integer" />
+        <attr name="bgColor" format="integer" />
+        <attr name="isWarn" format="boolean" />
+        <attr name="warnText" format="string" />
+        <attr name="gravity">
+            <flag name="right" value="0x30" />
+            <flag name="center" value="0x50" />
+            <flag name="left" value="0x03" />
+        </attr>
+    </declare-styleable>
+
+    <!--textview绘制带图片控制大小-->
+    <declare-styleable name="TextDrawable">
+        <attr name="leftDrawable" format="reference" />
+        <attr name="leftDrawableWidth" format="dimension" />
+        <attr name="leftDrawableHeight" format="dimension" />
+        <attr name="rightDrawable" format="reference" />
+        <attr name="rightDrawableWidth" format="dimension" />
+        <attr name="rightDrawableHeight" format="dimension" />
+        <attr name="topDrawable" format="reference" />
+        <attr name="topDrawableWidth" format="dimension" />
+        <attr name="topDrawableHeight" format="dimension" />
+    </declare-styleable>
+</resources>

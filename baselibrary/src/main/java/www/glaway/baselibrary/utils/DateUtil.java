@@ -12,12 +12,22 @@ public class DateUtil {
     public static final String DateFormatTime = "yyyy-MM-dd HH:mm:ss";
 
 
-    public static String dateToString1(Date date) {
+    /**
+     * 时间转字符串
+     * @param date
+     * @return
+     */
+    public static String dateToString(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return formatter.format(date);
     }
 
-    public static String dateToString2(Date date) {
+    /**
+     * 时间转字符串，带时分秒
+     * @param date
+     * @return
+     */
+    public static String dateToStringTime(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(date);
     }

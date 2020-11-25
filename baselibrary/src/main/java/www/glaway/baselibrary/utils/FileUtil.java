@@ -24,6 +24,10 @@ public class FileUtil {
         return true;
     }
 
+    /**
+     * 删除文件
+     * @param path
+     */
     public static void fileDelete(String path) {
         File file = new File(path);
         if (file.exists()) {
@@ -31,7 +35,11 @@ public class FileUtil {
         }
     }
 
-    //判断文件是否存在
+    /**
+     * 判定文件是否存在，存在则删除重建，不存在则新建
+     * @param dirPath
+     * @return
+     */
     public static Boolean fileisExit(String dirPath) {
         File file = new File(dirPath);
         try {
