@@ -9,11 +9,16 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import www.glaway.baselibrary.activity.BaseActivity;
+import www.glaway.baselibrary.service.WebService;
 import www.glaway.glawaylibrary.R;
+
+import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
 public class LoginActivity extends BaseActivity {
 
@@ -92,10 +97,40 @@ public class LoginActivity extends BaseActivity {
 //                pickerShow.showPickerDate(this,date -> {
 //                    ToastUtil.showWarning(date+"");
 //                });
+                //webservice测试
+//                testWebService();
                 break;
             case R.id.btn_submit:
                 startActivity(new Intent(LoginActivity.this, EchartActivity.class));
                 break;
         }
+    }
+
+    /**
+     * wenservice测试
+     */
+    private void testWebService() {
+        WebService webService = new WebService(
+                "getRegionCountry",
+                "http://ws.webxml.com.cn/WebServices/WeatherWS.asmx",
+                "http://WebXml.com.cn/",
+                "http://WebXml.com.cn/getRegionCountry",
+                new WebService.WebCallback() {
+                    @Override
+                    public void success(Object call) {
+                        Logger.e(call.toString());
+                    }
+
+                    @Override
+                    public void fail(Object call) {
+
+                    }
+
+                    @Override
+                    public void progress(Object call) {
+
+                    }
+                });
+        webService.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 }

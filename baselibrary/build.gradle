@@ -78,10 +78,9 @@ dependencies {
     //添加lombok依赖
     implementation 'org.glassfish:javax.annotation:10.0-b28'
     //java注解
-//    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-//    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    //    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    //    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
-
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.blankj:utilcode:1.30.4'
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
@@ -98,4 +97,5 @@ dependencies {
     implementation 'cn.yc:NetLib:1.0.1'
     implementation files('libs/SQLiteStudioRemote.jar')
     implementation files('libs/jackson-all-2.8.0.jar')
+    implementation files('libs/ksoap2-android-exokhttp.jar')
 }
